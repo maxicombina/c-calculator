@@ -1,13 +1,18 @@
-A simple calculator written in C.
+# A simple calculator written in C.
 
+### RATIONALE:
+I did this implementaion because I did not find a nice implemenation of a "full formula" calculator online: I only found simple examples that support only one operator.
+This implementation supports full formulas (limited only by the size of the stack and the queue).
+
+### FEATURES / KNOWN ISSUES
 Accepts the following operators:
- +: sum
- -: sub
- *: multiplication
- /: division
- %: modulus
- ^: power
- (): used to change precedence
+ * +: sum
+ * -: sub
+ * *: multiplication
+ * /: division
+ * %: modulus
+ * ^: power
+ * (): used to change precedence
 
 Current implementation is a Proof of Concept, aiming at keeping the code clear.
 As such, it has very strong limitations:
@@ -18,11 +23,8 @@ As such, it has very strong limitations:
  * It accepts some expressions like "()1+1", whereas tools like "bc" reject those
  * Error messages can be improved
 
-RATIONALE:
-I did this implementaion because I did not find a nice implemenation of a "full formula" calculator online: I only found simple examples that support only one operator.
-This implementation supports full formulas (limited only by the size of the stack and the queue).
 
-HOW TO USE IT:
+### HOW TO USE IT:
 Compile and run:
 ./calculator "expression".
 
@@ -51,12 +53,16 @@ result: 0
 ./calculator "16 % (2 % 1)"
 Modulo by zero
 
-=============================
-To import into Eclipse CDT:
-=============================
+
+### BUILDING
+
+#### To import into Eclipse CDT:
 
 File -> New -> Project...
 Under C/C++ choose "C Project"
 Select a Project name
 Ensure that the "Use default location" option is not selected because here you need to specify where the resources reside in the file system, in a location other than your workspace.
 Select an appropriate Toolchain such as Executable / Linux GCC.
+
+#### Manual build
+Compile and link using gcc. Makefile is left as an excercise to the reader.
