@@ -1,4 +1,4 @@
-# A simple calculator written in C.
+# A simple calculator written in C
 
 ### RATIONALE:
 I did this implementaion because I did not find a nice implemenation of a "full formula" calculator online: I only found simple examples that support only one operator.
@@ -32,6 +32,7 @@ You can use quotes if your expression contains spaces or parenthesis.
 Alternatively, you can avoid spaces and scape parenthesis.
 
 EXAMPLES:
+```
 ./calculator 1+1+2-3
 result: 1
 
@@ -52,17 +53,18 @@ result: 0
 
 ./calculator "16 % (2 % 1)"
 Modulo by zero
+```
 
 
 ### BUILDING
 
 #### To import into Eclipse CDT:
 
-File -> New -> Project...
-Under C/C++ choose "C Project"
-Select a Project name
-Ensure that the "Use default location" option is not selected because here you need to specify where the resources reside in the file system, in a location other than your workspace.
-Select an appropriate Toolchain such as Executable / Linux GCC.
+* File -> New -> Project...
+* Under C/C++ choose "C Project"
+* Select a Project name
+  * Ensure that the "Use default location" option is not selected because here you need to specify where the resources reside in the file system, in a location other than your workspace.
+* Select an appropriate Toolchain such as Executable / Linux GCC.
 
 #### Manual build
 Compile and link using gcc. Makefile is left as an excercise to the reader.
