@@ -23,8 +23,8 @@ As such, it has very strong limitations:
  * Error messages can be improved
  * Input parser does not recognize negative numbers. However, easy workaround is to write "(0-1)" instead of "-1"
  * Acually, it does not support any unary operator (-, +, ! ...). Adding support is tricky and error-prone
-  * For instance, if we accept "~" as the unary minus, expressions like "~1" and "1~" would both produce "-1"
-  * To avoid this more logic needs to be added, and this is beyond the scope of this project
+   * For instance, if we accept "~" as the unary minus, expressions like "\~1" and "1\~" would both produce "-1"
+   * To avoid this more logic needs to be added, and this is beyond the scope of this project
  * In order to add correct support for unary operators, a grammar definition and parser should be used (think of lex + yacc)
 
 
