@@ -22,14 +22,14 @@ typedef signed long long byte_8;
 /* Data type for numbers and operators */
 typedef enum
 {
-	TOKEN_OPERATOR = 1,
-	TOKEN_NUMBER
+    TOKEN_OPERATOR = 1,
+    TOKEN_NUMBER
 }token_type_e;
 
 typedef struct
 {
-	token_type_e type;
-	byte_8 val;
+    token_type_e type;
+    byte_8 val;
 }token_t;
 
 /* Extremely simple Stack and Queue, but good enough for our needs here.

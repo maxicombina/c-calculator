@@ -105,7 +105,7 @@ int get_op_precedence(char op)
     }
     else if (op == '^')
     {
-    	res = 11;
+        res = 11;
     }
     return res;
 }
@@ -124,13 +124,13 @@ static int is_higher_precedence(char op1, char op2)
 
 static int is_left_assoc_operator(char op)
 {
-	return (op == '+' || op == '-' || op == '*' || op == '/' || op == '%');
+    return (op == '+' || op == '-' || op == '*' || op == '/' || op == '%');
 }
 
 static int is_right_assoc_operator(char op)
 {
 
-	return (op == '^');
+    return (op == '^');
 
 }
 
@@ -162,24 +162,24 @@ void shunting_yard(const char* input, simple_stack_t* ops, simple_queue_t* outpu
             case '%':
             case '^':
             {
-                while ( !stack_is_empty(ops)         &&                   /* there is an operator in the stack */
-						/*is_operator(stack_peek(ops)) &&*/
-						(
-							(
-								is_left_assoc_operator(c) &&                       /* it is a left-assoc operator and ... */
-								is_higher_or_equal_precedence(stack_peek(ops), c)  /* ... has higher/equal preference than the one in the stack */
-							)
-							||                                /* OR */
-							(
-								is_right_assoc_operator(c) &&                        /* it is a right-assoc operator and ... */
-								is_higher_precedence(stack_peek(ops), c)             /* ... has higher preference than the one in the stack */
-							)
-						)
-                	)
+                while ( !stack_is_empty(ops)              &&                       /* there is an operator in the stack */
+                        /*is_operator(stack_peek(ops)) &&*/
+                        (
+                            (
+                                is_left_assoc_operator(c) &&                       /* it is a left-assoc operator and ... */
+                                is_higher_or_equal_precedence(stack_peek(ops), c)  /* ... has higher/equal preference than the one in the stack */
+                            )
+                            ||                                /* OR */
+                            (
+                                is_right_assoc_operator(c) &&                       /* it is a right-assoc operator and ... */
+                                is_higher_precedence(stack_peek(ops), c)            /* ... has higher preference than the one in the stack */
+                            )
+                        )
+                    )
                 {
-                	byte_8 stack_top = stack_pop(ops);
-                	new_token.type = TOKEN_OPERATOR;
-                	new_token.val = stack_top;
+                    byte_8 stack_top = stack_pop(ops);
+                    new_token.type = TOKEN_OPERATOR;
+                    new_token.val = stack_top;
                     queue_enqueue(new_token, output);
                 }
 
@@ -190,37 +190,37 @@ void shunting_yard(const char* input, simple_stack_t* ops, simple_queue_t* outpu
 
             case '(':
             {
-            	stack_push(c, ops);
-            	stack_push(c, &parenthesis);
-            	i++;
-            	break;
+                stack_push(c, ops);
+                stack_push(c, &parenthesis);
+                i++;
+                break;
             }
             case ')':
             {
-            	while ( !stack_is_empty(ops) &&
-            			/*is_operator(stack_peek(ops)) &&*/
-            			(char) stack_peek(ops) != '('
-            		  )
-            	{
-            		byte_8 stack_top = stack_pop(ops);
-            		new_token.type = TOKEN_OPERATOR;
-            		new_token.val = stack_top;
-					queue_enqueue(new_token, output);
-            	}
+                while ( !stack_is_empty(ops) &&
+                        /*is_operator(stack_peek(ops)) &&*/
+                        (char) stack_peek(ops) != '('
+                      )
+                {
+                    byte_8 stack_top = stack_pop(ops);
+                    new_token.type = TOKEN_OPERATOR;
+                    new_token.val = stack_top;
+                    queue_enqueue(new_token, output);
+                }
 
-            	/* Balanced parenthesis check */
-            	if (stack_is_empty(&parenthesis))
-				{
-            		/* We must have a '(' */
-            		printf("Unbalanced parenthesis\n");
-					exit(1);
-				}
-            	/* Pop the '(' */
-           		stack_pop(&parenthesis);
+                /* Balanced parenthesis check */
+                if (stack_is_empty(&parenthesis))
+                {
+                    /* We must have a '(' */
+                    printf("Unbalanced parenthesis\n");
+                    exit(1);
+                }
+                /* Pop the '(' */
+                   stack_pop(&parenthesis);
 
 
-            	i++;
-            	break;
+                i++;
+                break;
             }
 
             /* Rest of input: we only accept (positive) numbers. TODO: accepet negative numbers */
@@ -249,8 +249,8 @@ void shunting_yard(const char* input, simple_stack_t* ops, simple_queue_t* outpu
     /* Parenthesis stack must be empty */
     if (!stack_is_empty(&parenthesis))
     {
-		printf("Unbalanced parenthesis\n");
-		exit(1);
+        printf("Unbalanced parenthesis\n");
+        exit(1);
     }
 
     /* Put remaining operators in the tokens queue */
@@ -275,7 +275,7 @@ byte_8 compute_rpn(simple_queue_t *q)
         token_t queue_front = queue_dequeue(q);
 
         if (queue_front.type == TOKEN_OPERATOR)
-		{
+        {
             switch (queue_front.val)
             {
                 case '+':
@@ -312,8 +312,8 @@ byte_8 compute_rpn(simple_queue_t *q)
                     op1 = stack_pop(&work_area);
                     if (op2 == 0)
                     {
-                     	printf("Division by zero\n");
-                     	exit(1);
+                         printf("Division by zero\n");
+                         exit(1);
                     }
                     res = op1 / op2;
                     stack_push(res, &work_area);
@@ -326,8 +326,8 @@ byte_8 compute_rpn(simple_queue_t *q)
                     op1 = stack_pop(&work_area);
                     if (op2 == 0)
                     {
-                    	printf("Modulo by zero\n");
-                    	exit(1);
+                        printf("Modulo by zero\n");
+                        exit(1);
                     }
                     res = op1 % op2;
                     stack_push(res, &work_area);
@@ -343,10 +343,10 @@ byte_8 compute_rpn(simple_queue_t *q)
                     break;
                 }
             }
-		}
+        }
         else /* queue_front.type == TOKEN_NUMBER */
         {
-        	stack_push(queue_front.val, &work_area);
+            stack_push(queue_front.val, &work_area);
         }
     }
 

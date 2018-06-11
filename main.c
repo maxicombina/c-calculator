@@ -8,11 +8,11 @@ int main(int argc, char* argv[])
     simple_queue_t output;
     simple_stack_t ops;
 
-	if (argc != 2)
-	{
-		fprintf(stderr, "Use %s 'expression'\n", argv[0]);
-		return 1;
-	}
+    if (argc != 2)
+    {
+        fprintf(stderr, "Use %s 'expression'\n", argv[0]);
+        return 1;
+    }
     queue_init(&output);
     stack_init(&ops);
 
